@@ -41,7 +41,8 @@ File.open(ARGV[0], "r") do |f|
   f.each_line do |line|
     juggler = Zero_Juggler.new(line)
     juggler.parse
-    p juggler.binary_output
-    puts "===" *8
+    integer_output = juggler.binary_output.to_i(2)
+    p integer_output
+    # puts "===" *8
   end
 end
