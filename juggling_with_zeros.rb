@@ -1,22 +1,49 @@
-def parse(line)
-  output = ""
-  p line
-  # line.each do |symbol|
-  #   puts symbol
-  #   # if symbol == "00"
-  #   #   "turn to 1"
-  #   # end
+class Zero_Juggler
+  attr_reader :binary_output
+  def initialize(as_string)
+    @line = as_string.split(" ")
+    @current_flag = "0"
+    @binary_output = ""
+    @string_to_add = ""
+  end
 
-  #   # if symbol == "0"
-  #   #   puts "write to output"
-  #   # end
-  # end
-end
 
-File.open(ARGV[0], "r") do |f|
-  f.each_line do |line|
-    arr = line.split(" ")
-    parse(arr)
-    puts "===" *8
+
+  def parse()
+    @line.each_with_index do |symbol, index|
+      if index%2==0
+        set_flag(index)
+      else
+        grow_binary(index)
+      end
+    end
+  end
+
+  private
+
+  def set_flag(index)
+    if @line[index] == "0"
+      @current_flag = "0"
+    end
+
+    if @line[index] == "00"
+      @current_flag = "1"
+    end
+  end
+
+  def grow_binary(index)
+    @binary_output += @current_flag * @line[index].length
   end
 end
+# Driver Code:
+# first_line = "00 0 0 00 00 0"
+# juggler = Zero_Juggler.new(first_line)
+# juggler.parse
+# p juggler.binary_output
+
+# File.open(ARGV[0], "r") do |f|
+#   f.each_line do |line|
+#     arr = line.split(" ")
+#     puts "===" *8
+#   end
+# end
