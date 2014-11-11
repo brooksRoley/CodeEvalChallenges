@@ -35,15 +35,13 @@ class Zero_Juggler
     @binary_output += @current_flag * @line[index].length
   end
 end
-# Driver Code:
-# first_line = "00 0 0 00 00 0"
-# juggler = Zero_Juggler.new(first_line)
-# juggler.parse
-# p juggler.binary_output
 
-# File.open(ARGV[0], "r") do |f|
-#   f.each_line do |line|
-#     arr = line.split(" ")
-#     puts "===" *8
-#   end
-# end
+
+File.open(ARGV[0], "r") do |f|
+  f.each_line do |line|
+    juggler = Zero_Juggler.new(line)
+    juggler.parse
+    p juggler.binary_output
+    puts "===" *8
+  end
+end
