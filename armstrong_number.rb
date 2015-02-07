@@ -7,14 +7,15 @@ def armstrong?(number)
     sum += x.to_i**n
   end
   if sum == number
-    return true
+    puts "True"
   else
-    return false
+    puts "False"
   end
+
 end
 
 File.open(ARGV[0], "r") do |f|
   f.each_line do |number|
-    p armstrong?(number)
+    armstrong?(number)
   end
 end
